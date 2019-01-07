@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Track from '../containers/tracks';
 import TrackInput from '../containers/tracks_input';
 import '../App.css';
-import actionOnAddTrack from '../actions/track'
+import actionOnAddTrack from '../actions/track';
+import actionFetchAllUsers from '../actions/users';
 
 class App extends Component {
     constructor (props) {
@@ -14,10 +15,11 @@ class App extends Component {
     addTrack (value) {
         this.props.onAddTrack(value);
     }
+
   render() {
     return (
         <div>
-            <TrackInput addTrack={this.addTrack}/>
+            <TrackInput addTrack={this.props.onFetchUsers}/>
             <Track tracks={this.props.tracks}/>
         </div>
     );
@@ -33,6 +35,9 @@ function mapDispatchToProps (dispatch) {
     return {
         onAddTrack (trackName) {
             dispatch(actionOnAddTrack(trackName))
+        },
+        onFetchUsers() {
+            dispatch(actionFetchAllUsers());
         }
     }
 }

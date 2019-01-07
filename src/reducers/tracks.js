@@ -3,7 +3,7 @@ const initialStore = [
     'async'
 ];
 
-export default  function asyncReducer (state=initialStore, action) {
+export default function asyncReducer (state=initialStore, action) {
     if (action.type === 'ADD_TRACK') {
         return state = [
             ...state,
