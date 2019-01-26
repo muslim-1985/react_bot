@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
-import Auth from './components/Auth';
+import Login from './components/Login';
+import Register from './components/Register';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux'
@@ -16,14 +17,15 @@ import {BrowserRouter, Switch, Route } from 'react-router-dom';
 config.set(configuration);
 
 //redux dev tools chrome extensions activate && add middleware redux-thunk
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={App} />
-                <Route path="/auth" component={Auth}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/register" component={Register}/>
             </Switch>
         </BrowserRouter>
     </Provider>,

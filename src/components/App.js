@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Track from '../containers/tracks';
-import TrackInput from '../containers/tracks_input';
 import '../App.css';
-import actionOnAddTrack from '../actions/track';
 import actionFetchAllUsers from '../actions/users';
+import Menu from "../containers/menu";
 
 class App extends Component {
     constructor (props) {
         super(props);
-        //биндим метод так как вызываем его из дочернего класса
-        this.addTrack = this.addTrack.bind(this);
     }
-    addTrack (value) {
-        this.props.onAddTrack(value);
+
+    componentDidMount() {
+        this.props.onFetchUsers();
     }
 
   render() {
+        const { users } = this.props;
     return (
         <div>
-            <TrackInput addTrack={this.props.onFetchUsers}/>
-            <Track tracks={this.props.tracks}/>
+            <Menu/>
+            <ul>
+                {users.map(user => {
+                    return <li key={user._id}>{user.username}</li>
+                })}
+            </ul>
         </div>
     );
   }
@@ -28,14 +30,11 @@ class App extends Component {
 
 function mapStateToProps (state) {
     return {
-        tracks: state.tracks
+        users: state.users
     }
 }
 function mapDispatchToProps (dispatch) {
     return {
-        onAddTrack (trackName) {
-            dispatch(actionOnAddTrack(trackName))
-        },
         onFetchUsers() {
             dispatch(actionFetchAllUsers());
         }

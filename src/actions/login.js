@@ -1,9 +1,10 @@
 import config from 'react-global-configuration';
+import localStorage from 'local-storage';
 
 export default function actionOnLogin ()
 {
     return async dispatch => {
-        let result = await fetch(`${config.get('server')}/getGood`, {
+        let result = await fetch(`${config.get('server')}/login`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
