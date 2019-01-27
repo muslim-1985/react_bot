@@ -48,7 +48,7 @@ class Login extends Component {
 
 function mapStateToProps (state) {
     return {
-        tracks: state.tracks
+        auth: state.auth
     }
 }
 function mapDispatchToProps (dispatch) {
