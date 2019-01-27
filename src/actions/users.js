@@ -9,7 +9,7 @@ export default function actionFetchAllUsers ()
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage('jwt_token')}`
+                'Authorization': `Bearer ${localStorage('jwt_token').jwt.token}`
             }
         });
         let payload;

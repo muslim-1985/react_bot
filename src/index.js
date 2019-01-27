@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App';
 import Login from './components/Login';
 import Register from './components/Register';
+import {AuthenticatedRoute} from './helpers/auth_route';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux'
@@ -23,7 +24,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <Switch>
-                <Route exact path="/" component={App} />
+                <AuthenticatedRoute exact path="/" component={App} />
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
             </Switch>

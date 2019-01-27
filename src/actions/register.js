@@ -13,10 +13,12 @@ export default function actionOnRegister (value, history)
             },
             body: val
         });
-        let payload = 'some error';
+        let payload = {error: 'some error', access: false, jwt: null};
         if (result.ok) {
-            payload = await result.json();
-            await localStorage('jwt_token', payload.token);
+            payload.error = false;
+            payload.access = true;
+            payload.jwt = await result.json();
+            await localStorage('jwt_token', payload);
             await history.push('/');
         }
 
