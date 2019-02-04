@@ -1,6 +1,10 @@
 export default function fetchUsersReducer (state=[], action) {
     if(action.type === 'GET_USERS') {
-        return state = action.payload;
+        if (typeof action.payload === 'undefined') {
+            return state;
+        } else {
+            return state = action.payload;
+        }
     } else if (action.type === 'ADD_USERS') {
         return state =  action.payload;
 

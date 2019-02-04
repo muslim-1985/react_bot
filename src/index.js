@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App';
 import Login from './components/Login';
 import Register from './components/Register';
+import LeftSidebar from './components/UsersMessages';
 import {AuthenticatedRoute} from './helpers/auth_route';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -27,6 +28,7 @@ ReactDOM.render(
                 <AuthenticatedRoute exact path="/" component={App} />
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
+                <Route path="/user-messages" component={LeftSidebar}/>
             </Switch>
         </BrowserRouter>
     </Provider>,

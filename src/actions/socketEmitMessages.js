@@ -1,0 +1,22 @@
+
+import socket from 'socket.io-client';
+const io = socket('http://localhost:3012');
+
+export default function eventOnMessages (chatId)
+{
+    return dispatch => {
+        io.once('connect', (data) => dispatch({type: 'IS_CONNECTED', data}));
+        io.emit('SUBSCRIBE', chatId);
+        io.on('MESSAGE', (payload=[]) => {
+            return dispatch({type: 'MESSAGE',  payload })
+        });
+        io.on('MESSAGE_BOT_USER', (payload=[]) => {
+            return dispatch({type: 'MESSAGE_BOT_USER',  payload })
+        });
+    }
+}
+
+export function sendMessage ({chatId, message, userId})
+{
+    io.emit('SEND_MESSAGE', {chatId, message, userId});
+}
