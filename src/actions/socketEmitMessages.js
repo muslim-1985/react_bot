@@ -5,7 +5,6 @@ const io = socket('http://localhost:3012');
 export default function eventOnMessages (chatId)
 {
     return dispatch => {
-        io.once('connect', (data) => dispatch({type: 'IS_CONNECTED', data}));
         io.emit('SUBSCRIBE', chatId);
         io.on('MESSAGE', (payload=[]) => {
             return dispatch({type: 'MESSAGE',  payload })

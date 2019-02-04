@@ -3,27 +3,33 @@ import { connect } from 'react-redux';
 import '../App.css';
 import actionFetchBotUsers from '../actions/botUsers';
 import eventOnMessages from '../actions/socketEmitMessages';
+import isConnected from '../actions/isConnected';
 import Menu from "../containers/menu";
 import LeftSidebar from "../containers/usersMessages";
 
 class UserMessages extends Component {
     constructor (props) {
         super(props);
+      this.onMessage = this.onMessage.bind(this);
     }
 
     componentDidMount() {
         this.props.onFetchBotUsers();
-        this.props.onMessage(this.props.users[0]);
+        this.props.isConnected();
+    }
+    onMessage (userChatId) {
+        this.props.onMessage(userChatId);
     }
 
     render() {
-        console.log(this.props)
         const { users } = this.props;
+        const onMessage = this.onMessage;
+        const { messages } = this.props;
 
         return (
             <div>
                 <Menu/>
-                <LeftSidebar users={users}/>
+                <LeftSidebar users={users} onMessage={onMessage} message={messages}/>
             </div>
         );
     }
@@ -41,8 +47,11 @@ function mapDispatchToProps (dispatch) {
         onFetchBotUsers() {
             dispatch(actionFetchBotUsers());
         },
-        onMessage() {
-            dispatch(eventOnMessages());
+        isConnected () {
+            dispatch(isConnected())
+        },
+        onMessage(userChatId) {
+            dispatch(eventOnMessages(userChatId));
         }
     }
 }
