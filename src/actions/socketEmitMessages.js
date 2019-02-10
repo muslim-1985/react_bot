@@ -2,10 +2,9 @@
 import socket from 'socket.io-client';
 const io = socket('http://localhost:3012');
 
-export default function eventOnMessages (chatId)
+export default function eventOnMessages ()
 {
     return dispatch => {
-        io.emit('SUBSCRIBE', chatId);
         io.on('MESSAGE', (payload=[]) => {
             return dispatch({type: 'MESSAGE',  payload })
         });

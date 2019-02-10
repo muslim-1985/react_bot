@@ -7,13 +7,8 @@ export default class leftSidebar extends Component {
         this.state = {
             message: '',
         };
-        this.onEventMessage = this.onEventMessage.bind(this);
         this.onChangeMessageForm = this.onChangeMessageForm.bind(this);
         this.onSendMessage = this.onSendMessage.bind(this);
-    }
-
-    onEventMessage(userChatId) {
-        this.props.onMessage(userChatId)
     }
     onChangeMessageForm (e) {
        this.setState({ message : e.target.value });
@@ -32,7 +27,7 @@ export default class leftSidebar extends Component {
                             aria-orientation="vertical">
                            {users.map(user => {
                                return <a key={user._id} className="nav-link" id={`v-pills-${user._id}-tab`} data-toggle="pill" href={`#v-pills-${user._id}`}
-                                         role="tab" aria-controls={`v-pills-${user._id}`} aria-selected="true" onClick={() => this.onEventMessage(user.chatId)}>{user.firstName}</a>
+                                         role="tab" aria-controls={`v-pills-${user._id}`} aria-selected="true">{user.firstName}</a>
                            })}
                            <a className="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-profile"
                               role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>

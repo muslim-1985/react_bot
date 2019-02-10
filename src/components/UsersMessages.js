@@ -10,15 +10,12 @@ import LeftSidebar from "../containers/usersMessages";
 class UserMessages extends Component {
     constructor (props) {
         super(props);
-      this.onMessage = this.onMessage.bind(this);
     }
 
     componentDidMount() {
         this.props.onFetchBotUsers();
         this.props.isConnected();
-    }
-    onMessage (userChatId) {
-        this.props.onMessage(userChatId);
+        this.props.onMessage();
     }
 
     render() {
