@@ -5,6 +5,7 @@ import App from './components/App';
 import Login from './components/Login';
 import Register from './components/Register';
 import LeftSidebar from './components/UsersMessages';
+import logMonitor from './components/logMonitor';
 import {AuthenticatedRoute} from './helpers/auth_route';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -29,6 +30,7 @@ ReactDOM.render(
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/user-messages" component={LeftSidebar}/>
+                <Route path="/log" component={logMonitor}/>
             </Switch>
         </BrowserRouter>
     </Provider>,
