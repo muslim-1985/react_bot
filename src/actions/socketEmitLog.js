@@ -5,8 +5,9 @@ export default function eventOnLog ()
 {
     return dispatch => {
         io.on('log', (payload=[]) => {
-            console.log(payload)
-            return dispatch({type: 'LOG',  payload })
+            let encode = JSON.parse(payload);
+            console.log(encode)
+            return dispatch({type: 'LOG',  encode })
         });
     }
 }

@@ -14,11 +14,15 @@ class LogMonitor extends Component {
     }
 
     render() {
-        const onLog = this.onLog;
-        //console.log(onLog);
+        const logs = this.props.logs;
         return (
             <div>
                 <Menu/>
+                <ul>
+                    {logs.map((log, index) => {
+                        return <li key={index}>{log}</li>
+                    })}
+                </ul>
             </div>
         );
     }
