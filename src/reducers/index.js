@@ -5,6 +5,7 @@ import fetchBotUsersReducer from './botUsers'
 import onMessages from './eventOnMessages';
 import isConnected from './isConnected';
 import onLog from './eventOnLog';
+import queryLog from './queryLog';
 
 export default  combineReducers({
     users,
@@ -12,5 +13,6 @@ export default  combineReducers({
     fetchBotUsersReducer,
     onMessages,
     onLog,
-    isConnected
+    isConnected,
+    queryLog
 })
