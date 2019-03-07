@@ -20,6 +20,7 @@ class LogMonitor extends Component {
     setSecretUserData () {
       this.props.setUserData(
         {
+          username: this.username.value,
           passpharse: this.passpharse.value,
           ip: this.ip.value,
           key: this.key.value,
@@ -39,7 +40,8 @@ class LogMonitor extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-12">
-                  <i className="fas fa-cog fa-2x" data-toggle="modal" data-target="#myModal"></i>
+                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add server</button>
+                  <i className="fas fa-cog fa-2x"></i>
                {/* The Modal */}
                <div className="modal fade" id="myModal">
                  <div className="modal-dialog">
@@ -52,6 +54,12 @@ class LogMonitor extends Component {
                      {/* Modal body */}
                      <div className="modal-body">
                             <form>
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputUsername">Username</label>
+                                    <input type="text" className="form-control" id="exampleInputUsername"
+                                           aria-describedby="emailHelp" placeholder="Enter username" ref={(input) => { this.username = input; }} />
+
+                                </div>
                                 <div className="form-group">
                                     <label htmlFor="exampleInputPassword1">Passpharse</label>
                                     <input type="password" className="form-control" id="exampleInputPassword1"
