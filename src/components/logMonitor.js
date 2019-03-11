@@ -11,10 +11,14 @@ class LogMonitor extends Component {
     constructor(props) {
         super(props);
         this.setSecretUserData = this.setSecretUserData.bind(this);
+        this.setServerState = this.setServerState.bind(this);
+        this.state = {
+          serverState: '',
+      };
     }
 
     componentDidMount() {
-        this.props.getLog(localStorage('jwt_token').jwt.userId)
+      //  this.props.getLog(localStorage('jwt_token').jwt.userId)
         this.props.onLog();
     }
     setSecretUserData () {
@@ -23,13 +27,21 @@ class LogMonitor extends Component {
           username: this.username.value,
           passpharse: this.passpharse.value,
           ip: this.ip.value,
-          key: this.key.value,
+          privateKey: this.key.value,
           userId: localStorage('jwt_token').jwt.userId
         }
       );
       this.passpharse.value = '';
       this.ip.value = '';
       this.key.value = '';
+    }
+    setServerState (e) {
+      console.log(e.target.checked)
+      if (e.target.checked) {
+        this.props.getLog(localStorage('jwt_token').jwt.userId)
+      } else {
+        this.props.getLog(0)
+      }
     }
 
     render() {
@@ -39,9 +51,22 @@ class LogMonitor extends Component {
               <Menu/>
               <div className="container">
                 <div className="row">
-                  <div className="col-12">
-                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add server</button>
-                  <i className="fas fa-cog fa-2x"></i>
+                  <div className="col-2">
+                    <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add server</button>
+                  </div>
+                  <div className="col-2">
+                    <p><small>watch server</small></p>
+                    <label className="switch">
+                      <input type="checkbox" onChange={this.setServerState}/>
+                      <span className="slider round" />
+                    </label>
+                  </div>
+                  <div className="col-2">
+                    <i className="fas fa-cog fa-2x"></i>
+                  </div>
+                 
+                  
+              <div className="col-12">
                {/* The Modal */}
                <div className="modal fade" id="myModal">
                  <div className="modal-dialog">
