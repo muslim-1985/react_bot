@@ -20,7 +20,7 @@ class App extends Component {
             <Menu/>
             <ul>
                 {users.map(user => {
-                    return <li key={user._id}>{user.username}</li>
+                    return <li key={user.id}>{user.name}</li>
                 })}
             </ul>
         </div>
