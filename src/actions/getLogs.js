@@ -3,13 +3,15 @@ import localStorage from 'local-storage';
 
 export default function actionGetApacheLogs(userId) {
     return async dispatch => {
-        let result = await fetch(`${config.get('server')}/apacheLogs/${userId}`, {
-            method: 'GET',
+        let val = await JSON.stringify(userId);
+        let result = await fetch(`${config.get('server')}/apacheLogs`, {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage('jwt_token').jwt.token}`
             },
+            body: val
         });
         let payload;
         if (result.ok) {
@@ -32,10 +34,10 @@ export function actionSetUserData (data) {
             },
             body: val
         });
-        let payload;
-        if (result.ok) {
-            payload = await result.json();
-        }
+        let payload = 12;
+        // if (result.ok) {
+        //     payload = await result.json();
+        // }
         
         return dispatch({type: 'SET_LOGS',  payload })
     }

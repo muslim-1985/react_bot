@@ -17,10 +17,10 @@ class LogMonitor extends Component {
       };
     }
 
-    componentDidMount() {
-      //  this.props.getLog(localStorage('jwt_token').jwt.userId)
-        this.props.onLog();
-    }
+    // componentDidMount() {
+    //   //  this.props.getLog(localStorage('jwt_token').jwt.userId)
+    //     this.props.onLog();
+    // }
     setSecretUserData () {
       this.props.setUserData(
         {
@@ -38,10 +38,11 @@ class LogMonitor extends Component {
     setServerState (e) {
       console.log(e.target.checked)
       if (e.target.checked) {
-        this.props.getLog(localStorage('jwt_token').jwt.userId)
+        this.props.getLog({userId: localStorage('jwt_token').jwt.userId, watch: true})
       } else {
-        this.props.getLog(0)
+        this.props.getLog({userId: localStorage('jwt_token').jwt.userId, watch: false})
       }
+      this.props.onLog(e.target.checked);
     }
 
     render() {
@@ -131,8 +132,8 @@ function mapStateToProps (state) {
 }
 function mapDispatchToProps (dispatch) {
     return {
-        onLog() {
-            dispatch(eventOnLog());
+        onLog(check) {
+            dispatch(eventOnLog(check));
         },
         getLog (userId) {
             dispatch(actionGetApacheLogs(userId))
